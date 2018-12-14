@@ -19,7 +19,7 @@ gradle build
 
 2) Run tests:
 ```shell
-gradle -Dtest.single=KafkaClientSampleSpec test
+gradle clean -Dtest.single=KafkaClientSampleSpec test
 ```
 
 ### Docker
