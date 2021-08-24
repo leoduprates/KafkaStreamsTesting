@@ -1,14 +1,12 @@
-package org.sample.kafka
+package com.example.testautomation
 
 import org.apache.kafka.clients.consumer.KafkaConsumer
 import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerRecord
-import org.sample.kafka.helpers.KafkaAssertionsHelper
-import org.sample.kafka.helpers.KafkaConnectionHelper
 import spock.lang.Shared
 import spock.lang.Specification
 
-class KafkaClientSampleSpec extends Specification {
+class PublishSubscribeRecordSpec extends Specification {
 
     @Shared
     KafkaProducer kafkaProducer
@@ -23,7 +21,7 @@ class KafkaClientSampleSpec extends Specification {
         kafkaAssertions = new KafkaAssertionsHelper(kafkaConsumer)
     }
 
-    def 'Send and check if the record is in the topic'() {
+    def 'publish and subscribe record in topic'() {
         given:
         String key = new Random().nextLong()
         String message = "key: $key, message: 'Hello World'"
@@ -32,7 +30,7 @@ class KafkaClientSampleSpec extends Specification {
         kafkaProducer.send(new ProducerRecord('test', key, message))
 
         then:
-        kafkaAssertions.assertRecordExists(["test"], "Hello World")
+        kafkaAssertions.assertRecordExists(['test'], 'Hello World')
     }
 
     def cleanupSpec() {

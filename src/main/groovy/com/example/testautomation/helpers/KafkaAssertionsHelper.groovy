@@ -1,4 +1,4 @@
-package org.sample.kafka.helpers
+package com.example.testautomation
 
 import org.apache.kafka.clients.consumer.ConsumerRecord
 import org.apache.kafka.clients.consumer.ConsumerRecords
@@ -22,8 +22,9 @@ class KafkaAssertionsHelper {
 
             if (records.size() != 0) {
                 for (ConsumerRecord<String, String> record : records) {
-                    if (record.value().contains(value))
+                    if (record.value().contains(value)) {
                         exists = true
+                    }
                 }
             } else {
                 hasRecords = false
@@ -31,4 +32,5 @@ class KafkaAssertionsHelper {
         }
         return exists
     }
+
 }
